@@ -47,8 +47,6 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 
-app.get('/translink/stops', translink.stops);
-
 //app.get('/graph/node', graph.searchNode);
 
 app.get('/stops/search/:stopNo', stopRoute.searchStop);
