@@ -52,7 +52,7 @@ exports.stops = function(req, res){
 		var options = {
 		  host: 'api.translink.ca',
 		  port: 80,
-		  path: '/rttiapi/v1/stops?apikey=VUgc9AUoBNJKI7tdmvBD&'+source[i],
+		  path: '/rttiapi/v1/stops?apikey='+process.env.TRANSLINK_API_KEY+'&'+source[i],
 		  method: 'GET',
 		  headers: headers_opt
 		};
