@@ -54,7 +54,7 @@ exports.searchAllStops = function(callback){
 
 exports.searchAllRoutes = function(callback){
 	log.debug('calling cypherQuery...');
-	dao.cypherQuery("match (r:Route) where r.routeNo = 'C20' return r" , function(err, result){
+	dao.cypherQuery("match (r:Route) return r" , function(err, result){
 		if(err) throw err; 
 		log.debug('result: ['+JSON.stringify(result)+ ']' );
 		log.debug('calling callback');

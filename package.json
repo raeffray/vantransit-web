@@ -21,6 +21,7 @@
 	"mocha": "latest",
 	"winston": "latest",
 	"body-parser": "latest",
-	"promise": "latest"
+	"promise": "latest",
+        "xml2js": "latest"
     }
 }

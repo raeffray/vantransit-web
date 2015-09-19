@@ -169,3 +169,4 @@ module.exports.searchStop = searchStop;
 module.exports.searchAllStops = searchAllStops;
 module.exports.insertNodeUniqueStops = insertNodeUniqueStops;
 module.exports.createRouteToStopRel = createRouteToStopRel;
+module.exports.searchAllRoutes = searchAllRoutes;
