@@ -73,6 +73,27 @@ function insertNodeRoute(routeNo,callback){
 	});
 };
 
+function insertNodeItinerary(coordinates, itineraryNo, version, fromDate, toDate, callback){
+	var itinerary = {
+		itineraryNo: itineraryNo,
+		version: version,
+		fromDate: fromDate,
+		toDate: toDate
+	}
+	log.debug('calling graphDao.insertNode');
+	graphDao.insertNode(itinerary, 'Itinerary',callback);
+};
+
+function insertNodeItineraryPoints(lineNumber, sequence, latitude, longitude ,callback){
+	var itineraryPoint = {
+		lineNumber: lineNumber,
+		sequence: sequence,
+		latitude: latitude,
+		longitude: longitude
+	}
+	log.debug('calling graphDao.insertNode');
+	graphDao.insertNode(itineraryPoint, 'ItineraryPoint',callback);
+};
 
 function insertNodeUniqueStops(stopToCreate,callback){
 
@@ -170,3 +191,5 @@ module.exports.searchAllStops = searchAllStops;
 module.exports.insertNodeUniqueStops = insertNodeUniqueStops;
 module.exports.createRouteToStopRel = createRouteToStopRel;
 module.exports.searchAllRoutes = searchAllRoutes;
+module.exports.insertNodeItinerary = insertNodeItinerary;
+module.exports.insertNodeItineraryPoints = insertNodeItineraryPoints;

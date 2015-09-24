@@ -63,9 +63,9 @@ exports.searchAllRoutes = function(callback){
 };
 
 exports.insertNode = function(obj, label, callback){
-	console.log('calling insertNode');
+	console.log('calling insertNode ['+JSON.stringify(obj)+'] ['+label+ ']');
 	dao.insertNode(obj, label, function(err, node){
-			console.log('callback insertNode');
+		console.log('callback insertNode');
 	    if(err) throw err;
 	    console.log('created node: ['+JSON.stringify(node)+']'); 
 	    callback(node);
