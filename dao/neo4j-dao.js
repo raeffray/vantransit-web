@@ -12,9 +12,12 @@ exports.searchNode = function(id, callback){
 	});
 };
 
-exports.searchStopByNumber = function(stopNo, callback){
-	log.debug('calling cypherQuery...');
-	dao.cypherQuery("match (s:Stop) where s.stopNo = "+stopNo+" return s" , function(err, result){
+
+exports.searchTripByRouteAndStop = function(routeCode, timeBegin, timeEnd, stopCode, dayOfWeek, callback){
+	console.log('calling cypherQuery...searchTripByRouteAndStop');
+	var query = "match (r:ROUTE)-[rl0:TRAVELS]->(t:TRIP)-[rl1:EXECUTE]->(s:SERVICE), (t)-[rl3:PICKUP_AT]->(bs:BUSSTOP) where r.code = '"+routeCode+"' and s.dayOfweek = '"+dayOfWeek+"' and rl3.arrivalTimeInt > "+timeBegin+" and rl3.arrivalTimeInt < "+timeEnd+" and bs.code = '"+stopCode+"' return r.code as routeCode, toInt(t.tripId) as tripId, rl3.arrivalTime as arrivalTime, bs.code as stopCode, bs.description as stopDescription, toInt(rl3.sequence) as sequence order by t.tripId, toInt(rl3.sequence)";
+	console.log(query);
+	dao.cypherQuery(query , function(err, result){
 		if(err) throw err; 
 		log.debug('result: ['+JSON.stringify(result)+ ']' );
 		log.debug('calling callback');
@@ -22,9 +25,11 @@ exports.searchStopByNumber = function(stopNo, callback){
 	});
 };
 
-exports.searchStopByRoute = function(routeNo, callback){
-	log.debug('calling cypherQuery...');
-	dao.cypherQuery("match (s:Stop) where s.Routes =~ '.*"+routeNo+".*' return s" , function(err, result){
+exports.searchTripByStop = function(timeBegin, timeEnd, stopCode, dayOfWeek, callback){
+	console.log('calling cypherQuery...searchTripByStop');
+	var query = "match (r:ROUTE)-[rl0:TRAVELS]->(t:TRIP)-[rl1:EXECUTE]->(s:SERVICE), (t)-[rl3:PICKUP_AT]->(bs:BUSSTOP) where s.dayOfweek = '"+dayOfWeek+"' and rl3.arrivalTimeInt > "+timeBegin+" and rl3.arrivalTimeInt < "+timeEnd+" and bs.code = '"+stopCode+"' return r.code as routeCode, toInt(t.tripId) as tripId, rl3.arrivalTime as arrivalTime, bs.code as stopCode, bs.description as stopDescription, toInt(rl3.sequence) as sequence order by t.tripId, toInt(rl3.sequence)";
+	console.log(query);
+	dao.cypherQuery(query , function(err, result){
 		if(err) throw err; 
 		log.debug('result: ['+JSON.stringify(result)+ ']' );
 		log.debug('calling callback');
@@ -32,51 +37,15 @@ exports.searchStopByRoute = function(routeNo, callback){
 	});
 };
 
-exports.searchRouteByNumber = function(routeNo, callback){
-	log.debug('calling cypherQuery...');
-	dao.cypherQuery("match (r:Route) where r.routeNo = '"+routeNo+"' return r" , function(err, result){
+exports.searchTripById = function(tripId, callback){
+	console.log('calling cypherQuery...searchTripById');
+	var query = "match (r:ROUTE)-[rl0:TRAVELS]->(t:TRIP)-[rl1:EXECUTE]->(s:SERVICE), (t)-[rl3:PICKUP_AT]->(bs:BUSSTOP) where t.tripId = '"+tripId+"' return r.code as routeCode, toInt(t.tripId) as tripId, rl3.arrivalTime as arrivalTime, bs.code as stopCode, bs.description as stopDescription, toInt(rl3.sequence) as sequence, bs.latitude as latitude, bs.longitude as longitude order by t.tripId, toInt(rl3.sequence)";
+	console.log(query);
+	dao.cypherQuery(query , function(err, result){
 		if(err) throw err; 
 		log.debug('result: ['+JSON.stringify(result)+ ']' );
 		log.debug('calling callback');
 		callback(result);
 	});
 };
-
-exports.searchAllStops = function(callback){
-	log.debug('calling cypherQuery...');
-	dao.cypherQuery("match (s:Stop) return s" , function(err, result){
-		if(err) throw err; 
-		log.debug('result: ['+JSON.stringify(result)+ ']' );
-		log.debug('calling callback');
-		callback(result);
-	});
-};
-
-exports.searchAllRoutes = function(callback){
-	log.debug('calling cypherQuery...');
-	dao.cypherQuery("match (r:Route) return r" , function(err, result){
-		if(err) throw err; 
-		log.debug('result: ['+JSON.stringify(result)+ ']' );
-		log.debug('calling callback');
-		callback(result);
-	});
-};
-
-exports.insertNode = function(obj, label, callback){
-	console.log('calling insertNode ['+JSON.stringify(obj)+'] ['+label+ ']');
-	dao.insertNode(obj, label, function(err, node){
-		console.log('callback insertNode');
-	    if(err) throw err;
-	    console.log('created node: ['+JSON.stringify(node)+']'); 
-	    callback(node);
-	});
-};
-
-exports.insertRelationship = function (name, root, target, parameters, callback){
-	dao.insertRelationship(root._id, target._id, name, parameters, function(err, relationship){
-        if(err) throw err;
-        console.log('relationship:' + relationship);
-        callback(relationship);
-	});
-}
 

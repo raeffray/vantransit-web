@@ -10,7 +10,7 @@ var bodyParser = require('body-parser')
 //var data = require('./routes/data');
 //var graph = require('./services/graphService');
 
-var stopRoute = require('./routes/stopRoute');
+var tripRoute = require('./routes/tripRoute');
 
 var consolidate = require('consolidate');
 var http = require('http');
@@ -47,15 +47,11 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 
-//app.get('/graph/node', graph.searchNode);
-
-app.get('/stops/search/:stopNo', stopRoute.searchStop);
-
-app.post('/stops/create', stopRoute.createStop);
-
-//app.get('/graph/stops/addUnique', graph.insertNode);
+app.get('/trips/stop/:stopCode', tripRoute.searchTripsWithParameters);
+app.get('/trips/trip/:tripId', tripRoute.searchTripById);
 
 
 http.createServer(app).listen(app.get('port'), function(){
+	console.log('http://:'+process.env.NEO4J_TOKEN+'@'+process.env.NEO4J_HOST+':7474');
     console.log('Express server listening on port ' + app.get('port'));
 });

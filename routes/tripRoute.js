@@ -3,13 +3,11 @@ var graphService = require('../services/graphService');
 var winston = require('winston');
 var log = new winston.Logger();
 
-exports.searchStop = function (req,res){
+exports.searchTripsWithParameters = function (req,res){
 
 	var stopCode = req.param('stopCode');
 
 	var routeCode = req.param('routeCode');
-
-	console.log('routeCode: ' + routeCode);
 
 	if( typeof routeCode !== 'undefined'){
 		graphService.searchTripByRouteAndStop(routeCode,stopCode,function (data) {
@@ -17,33 +15,25 @@ exports.searchStop = function (req,res){
 			res.send(data);
 		});
 	}else{
+		console.log('step 2');
 		graphService.searchTripByStop(stopCode,function (data) {
 			log.info("stops route - sending data");
 			res.send(data);
 		});		
 	}
 
-
 };
 
-exports.createStop = function (req,res){
-	graphService.insertNodeUniqueStops(req.body,function (data) {
-		if(data=="NODE_ALREADY_EXIST"){
-			res.status(409);
-			res.end();
-		}else{
-			res.send(data);	
-		}
-	});
-};
+exports.searchTripById = function (req,res){
 
-exports.normalize = function (req,res){
-	graphService.normalize(function (data) {
-		if(data=="NODE_ALREADY_EXIST"){
-			res.status(409);
-			res.end();
-		}else{
-			res.send(data);	
-		}
-	});
+	var tripId = req.param('tripId');
+
+	if( typeof tripId !== 'undefined'){
+		graphService.searchTripById(tripId,function (data) {
+			res.send(data);
+		});
+	}else{
+			
+	}
+
 };
