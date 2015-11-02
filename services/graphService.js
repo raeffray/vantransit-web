@@ -45,11 +45,14 @@ function searchTripByStop(stopCode, callback){
 };
 
 function searchTripById(tripId, callback){
-	graphDao.searchTripById(tripId, function(result){
-		log.debug("graph service -  result: ["+result+"]");
-		util.massageReturn(result,callback);
+    
+     var date = new Date();
+
+     graphDao.searchTripById(tripId, util.getDayOfweek(date.getDay()), function(result){
+         log.debug("graph service -  result: ["+result+"]");
+         util.massageReturn(result,callback);
 		//callback(result);
-	});
+     });
 };
 
 module.exports.searchTripByRouteAndStop = searchTripByRouteAndStop;
