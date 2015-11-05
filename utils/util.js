@@ -31,11 +31,8 @@ exports.getDayOfweek = function(day) {
 };
 
 function formatHour(date) {
-	var hour = '0' + date.getHours();
+	var hour = date.getHours();
 	var minutes = '0' + date.getMinutes();
-	if (hour.length === 3) {
-		hour = hour.substring(1, 3);
-	}
 	if (minutes.length === 3) {
 		minutes = minutes.substring(1, 3);
 	}
