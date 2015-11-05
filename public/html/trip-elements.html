@@ -1,0 +1,19 @@
+<div class="row">
+    <ul>
+        <li ng-repeat="trip in tripCtrl.tripsData">
+            <div class="col-md-1">Route</div>
+            <div class="col-md-1">{{trip.routeCode}}</div>
+            <div class="col-md-1">Trip Id</div>
+            <div class="col-md-1">{{trip.tripId}}</div>
+            <div class="col-md-1">Arrival Time</div>
+            <div class="col-md-1">{{trip.arrivalTime}}</div>
+            <div class="col-md-1">Stop Code</div>
+            <div class="col-md-1">{{trip.stopCode}}</div>
+            <div class="col-md-1">Stop Description</div>
+            <div class="col-md-1">{{trip.stopDescription}}</div>
+            <div class="col-md-1">Sequence</div>
+            <div class="col-md-1">{{trip.sequence}}</div>
+            <div class="col-md-1">Map</div>
+            <div  class="col-md-1"><a href="http://google.ca/maps?q={{trip.latitude}},{{trip.longitude}}" target="_blank">Map</a></div>
+    </ul>
+</div>

@@ -1,0 +1,25 @@
+<div ng-show="searchTripCtrl.trips" class="ng-hide">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td class="col-md-1">Route</td>
+                <td class="col-md-1">Trip Id</td>
+                <td class="col-md-1">Arrival Time</td>
+                <td class="col-md-1">Stop Code</td>
+                <td class="col-md-1">Stop Description</td>
+                <td class="col-md-1">Sequence</td>
+                <td class="col-md-1">Map</td>
+            </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="trip in searchTripCtrl.trips">
+            <td class="col-md-1">{{trip.routeCode}}</td>
+            <td class="col-md-1">{{trip.tripId}}</td>
+            <td class="col-md-1">{{trip.arrivalTime}}</td>
+            <td class="col-md-1">{{trip.stopCode}}</td>
+            <td class="col-md-1">{{trip.stopDescription}}</td>
+            <td class="col-md-1">{{trip.sequence}}</td>
+            <td class="col-md-1"><a href="http://google.ca/maps?q={{trip.latitude}},{{trip.longitude}}" target="_blank">Map</a></td>
+        </tbody>
+    </table>
+</div>    

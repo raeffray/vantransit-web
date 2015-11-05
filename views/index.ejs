@@ -1,29 +1,31 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!--
-http://www.clker.com/clipart-gas-station-black.html
-http://iconexpo.com/2008/12/free-gmail-icons/
--->
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+<html ng-app='main-transit'>
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-        <meta name="author" content="renato"/>
-        <title>translink</title>
-        <link rel="stylesheet" href="stylesheets/stylesheet.css" type="text/css" media="screen" charset="utf-8" />
-        <script type="text/javascript"> 
-            google.load("jquery", "1.4"); 
-        </script> 
+        <title>Transit Vancouver</title>
+        <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+        <link href="/stylesheets/style.css" rel="stylesheet">
+        <link href="/stylesheets/bootstrap-theme.min.css" rel="stylesheet" id="bs-theme-stylesheet">
     </head>
     <body>
-        <div id="panel">
-              <input id="address" type="search">
-              <input type="button" value="  Ir!  " onclick="codeAddress()">
-            </div>
-        <div id="container">
-            <div id="header">
-                <h1>:)  </h1>
-                <h2>translink</h2>
-            </div>
-        </div>
+
+        <page-head></page-head>
+
+         <route-searchform></route-searchform>
+
+         <route-trips></route-trips>
+
+        <!--trip-searchform></trip-searchform-->
+
+        <!--trip-elements></trip-elements-->
+
+        <script type="text/javascript" src="/javascripts/angular.min.js"></script>
+        <script type="text/javascript" src="/app/main.js"></script>
+        <script type="text/javascript" src="/app/trips.js"></script>
+        <script type="text/javascript" src="/app/routes.js"></script>
+        <script type="text/javascript" src="/javascripts/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="/javascripts/bootstrap.min.js"></script>
+
+        <page-bottom></page-bottom>
+
     </body>
+
 </html>

@@ -1,0 +1,6 @@
+<form name="searchTripForm" class="form-inline" ng-submit="searchTripForm.$valid && searchTripCtrl.search()" novalidate>
+  <div class="form-group">
+    <input ng-model="searchTripCtrl.routeCode" type="text" class="form-control" id="routeCode" placeholder="Route Code" required>
+  </div>
+  <button type="submit" class="btn btn-default">Search</button>
+</form>

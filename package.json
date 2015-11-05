@@ -1,27 +1,29 @@
 {
-    "name": "translink",
-    "version": "0.0.1",
-    "private": true,
-    "scripts": {
-	"start": "node app.js"
-    },
-    "engines": {
-	"node": "0.10.17",
-	"npm": "1.2.x"
-    },
-    "dependencies": {
-	"express": "3.4.3",
-	"ejs": "*",
-	"stylus": "*",
-	"mongoose": "latest",
-	"node-rest-client": "latest",
-	"consolidate": "~0.9.1",
-	"jade": "latest",
-	"node-neo4j": "latest",
-	"mocha": "latest",
-	"winston": "latest",
-	"body-parser": "latest",
-	"promise": "latest",
-        "xml2js": "latest"
-    }
+	"name": "translink",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node app.js"
+	},
+	"engines": {
+		"node": "0.10.17",
+		"npm": "1.2.x"
+	},
+	"dependencies": {
+		"express": "3.4.3",
+		"ejs": "*",
+		"stylus": "*",
+		"mongoose": "latest",
+		"node-rest-client": "latest",
+		"consolidate": "~0.9.1",
+		"jade": "latest",
+		"node-neo4j": "latest",
+		"mocha": "latest",
+		"winston": "latest",
+		"body-parser": "latest",
+		"promise": "latest",
+		"xml2js": "latest",
+		"morgan": "latest",
+		"cors": "latest"
+	}
 }
