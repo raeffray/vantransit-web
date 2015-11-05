@@ -3,7 +3,8 @@ var app = angular.module('routes', []);
 app.controller('SearchTripController', ['$http','$scope','$filter', function($http,$scope,$filter) {
 	var ctrl = this;
 	this.search = function() {
-		$http.get("http://172.25.97.133:3000/ws/trips/route/" + $filter('uppercase')(this.routeCode)).success(function(data) {
+		//change to a confifurable address
+		$http.get("http://localhost:3000/ws/trips/route/" + $filter('uppercase')(this.routeCode)).success(function(data) {
 		}).success(function(data){
 			ctrl.trips = data;
 		});

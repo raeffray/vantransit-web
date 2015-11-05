@@ -2,7 +2,15 @@ var graphService = require('../services/graphService');
 var winston = require('winston');
 var log = require('../utils/van-logger');
 
-exports.searchTripsWithParameters = function(req, res) {
+//not working setting directly express server
+function setHeader(res){
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+}
+
+exports.searchTripsWithParameters = function(req, res, next) {
+	
+	setHeader(res);
 
 	var stopCode = req.param('stopCode');
 	var routeCode = req.param('routeCode');
@@ -29,11 +37,10 @@ exports.searchTripsWithParameters = function(req, res) {
 
 };
 
-exports.searchTripsByRoute = function(req, res) {
+exports.searchTripsByRoute = function(req, res, next) {
 
-	//res.header("Access-Control-Allow-Origin", "*");
-	//res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
+	setHeader(res);
+	
 	var routeCode = req.param('routeCode');
 
 	log.info('routeCode: [' + routeCode + ']');
@@ -50,7 +57,9 @@ exports.searchTripsByRoute = function(req, res) {
 
 };
 
-exports.searchTripById = function(req, res) {
+exports.searchTripById = function(req, res, next) {
+
+	setHeader(res);
 
 	var tripId = req.param('tripId');
 

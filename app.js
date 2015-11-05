@@ -7,6 +7,8 @@ var routes = require('./routes/index');
 var bodyParser = require('body-parser');
 var logger = require('./utils/van-logger');
 var morgan = require('morgan');
+var cors = require('cors');
+
 
 
 //var data = require('./routes/data');
@@ -18,9 +20,6 @@ var consolidate = require('consolidate');
 
 var http = require('http');
 var path = require('path');
-
-//var db = require('./model/db');
-//var Quotation = require("./model/schemas").Quotation;
 
 var app = express();
 
@@ -50,6 +49,9 @@ app.use(morgan("combined", "{ 'stream': logger.stream }"));
 if ('development' == app.get('env')) {
 	app.use(express.errorHandler());
 }
+
+//enable CORS 
+app.use(cors());
 
 app.get('/', routes.index);
 
